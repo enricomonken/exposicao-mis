@@ -45,31 +45,34 @@
     .audio-header { background: #111; color: white; padding: 10px 20px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
     .audio-body { padding: 14px 20px 18px; }
     .yt-wrapper { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; }
-    /* Iframe maior que o container — esconde as bordas com overflow:hidden */
     .yt-wrapper iframe {
       width: calc(100% + 4px);
       height: 260px;
       border: none;
       display: block;
-      margin: -70px -2px -50px -2px;
+      margin: -50px -2px -34px -2px;
     }
-    /* Moldura preta em cima — cobre topo (título, perfil) */
+    /* Desfoque em cima — cobre título e perfil */
     .yt-wrapper::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 72px;
-      background: #000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.45);
       z-index: 10;
       pointer-events: none;
     }
-    /* Moldura preta em baixo — cobre barra inferior (logo, barra de progresso) */
+    /* Desfoque em baixo — cobre barra de progresso e logo */
     .yt-wrapper::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 52px;
-      background: #000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.45);
       z-index: 10;
       pointer-events: none;
     }
@@ -90,7 +93,10 @@
       inset: 0;
       z-index: 10;
       pointer-events: none;
-      box-shadow: inset 60px 0 0 #000, inset -60px 0 0 #000;
+      /* Desfoque nas laterais via gradiente */
+      background:
+        linear-gradient(to right,  rgba(0,0,0,0.5) 0%, transparent 18%),
+        linear-gradient(to left,   rgba(0,0,0,0.5) 0%, transparent 18%);
     }
     :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   </style>
