@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exposição — Painel 01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F0E8;
+      --surface: #FFFFFF;
+      --text: #1A1208;
+      --text-muted: #6B5E4A;
+      --accent: #B5432A;
+      --accent-light: #F2E0DB;
+      --border: #D9CFC0;
+      --tab-active: #B5432A;
+      --tab-inactive: #8C7B67;
+      --radius: 4px;
+      --shadow: 0 2px 16px rgba(26,18,8,0.10);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--text);
+      color: #F5F0E8;
+      padding: 28px 24px 22px;
+      position: relative;
+    }
+    .expo-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 6vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #F5F0E8;
+    }
+    .panel-number {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8C7B67;
+      margin-top: 10px;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* AUDIO PLAYER */
+    .audio-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 24px 0 20px;
+      overflow: hidden;
+    }
+    .audio-header {
+      background: var(--accent);
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .audio-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .audio-body {
+      padding: 16px 20px 20px;
+    }
+    .audio-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* YouTube embed */
+    .yt-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #000;
+    }
+    .yt-wrapper iframe {
+      width: 100%;
+      height: 80px; /* compacto para áudio */
+      border: none;
+      display: block;
+    }
+
+    /* LANGUAGE TABS */
+    .lang-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 14px 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--tab-inactive);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--tab-active);
+      border-bottom-color: var(--tab-active);
+    }
+    .tab-btn:hover:not(.active) {
+      color: var(--text);
+    }
+    .tab-content {
+      display: none;
+      padding: 24px 22px 28px;
+      animation: fadeIn 0.25s ease;
+    }
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lang-label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 5vw, 26px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .panel-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #3A2E1E;
+    }
+    .panel-text p + p {
+      margin-top: 14px;
+    }
+
+    /* ACCESSIBILITY NOTE */
+    .a11y-note {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 12px 16px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #6B2A1A;
+      line-height: 1.5;
+    }
+    .a11y-note strong { font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 16px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    footer strong { color: var(--text); font-weight: 600; }
+
+    /* Focus styles for accessibility */
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="expo-label">Exposição Temporária</p>
+    <h1>Nome da Exposição</h1>
+    <span class="panel-number">Painel 01 de 12</span>
+  </header>
+
+  <main>
+
+    <!-- ÁUDIO -->
+    <section class="audio-section" aria-label="Áudio do painel">
+      <div class="audio-header">
+        <span class="audio-icon" aria-hidden="true">🔊</span>
+        Ouça este painel
+      </div>
+      <div class="audio-body">
+        <p class="audio-desc">Pressione play para ouvir o texto em português.</p>
+        <!-- 
+          INSTRUÇÃO: Substitua o src do iframe pelo link do YouTube.
+          Para obter o link de embed:
+          1. Abra o vídeo no YouTube
+          2. Clique em "Compartilhar" > "Incorporar"
+          3. Copie apenas o trecho: https://www.youtube.com/embed/ID_DO_VIDEO
+          
+          Parâmetros úteis:
+          ?rel=0           → não mostra vídeos relacionados
+          &autoplay=0      → não inicia automático
+          &modestbranding=1→ reduz logo YouTube
+        -->
+        <div class="yt-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/ID_DO_VIDEO?rel=0&modestbranding=1"
+            title="Áudio do Painel 01 — Nome da Exposição"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTOS POR IDIOMA -->
+    <section class="lang-section" aria-label="Texto do painel">
+      <div class="tabs" role="tablist" aria-label="Selecione o idioma">
+        <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-pt" id="btn-pt">🇧🇷 PT</button>
+        <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-en" id="btn-en">🇺🇸 EN</button>
+        <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-es" id="btn-es">🇪🇸 ES</button>
+      </div>
+
+      <!-- PORTUGUÊS -->
+      <div class="tab-content active" id="tab-pt" role="tabpanel" aria-labelledby="btn-pt">
+        <p class="lang-label">Português</p>
+        <h2 class="panel-title">Título do Painel em Português</h2>
+        <div class="panel-text">
+          <p>
+            Este é o texto principal do painel em português. Substitua este conteúdo pelo texto real da exposição. Procure manter parágrafos curtos para facilitar a leitura em tela de celular.
+          </p>
+          <p>
+            Você pode incluir quantos parágrafos forem necessários. O layout é responsivo e se adapta a qualquer tamanho de tela.
+          </p>
+        </div>
+      </div>
+
+      <!-- INGLÊS -->
+      <div class="tab-content" id="tab-en" role="tabpanel" aria-labelledby="btn-en">
+        <p class="lang-label">English</p>
+        <h2 class="panel-title">Panel Title in English</h2>
+        <div class="panel-text">
+          <p>
+            This is the main text of the panel in English. Replace this content with the actual exhibition text. Try to keep paragraphs short for easier reading on mobile screens.
+          </p>
+          <p>
+            You may include as many paragraphs as needed. The layout is fully responsive and adapts to any screen size.
+          </p>
+        </div>
+      </div>
+
+      <!-- ESPANHOL -->
+      <div class="tab-content" id="tab-es" role="tabpanel" aria-labelledby="btn-es">
+        <p class="lang-label">Español</p>
+        <h2 class="panel-title">Título del Panel en Español</h2>
+        <div class="panel-text">
+          <p>
+            Este es el texto principal del panel en español. Reemplace este contenido con el texto real de la exposición. Trate de mantener los párrafos cortos para facilitar la lectura en pantallas de móvil.
+          </p>
+          <p>
+            Puede incluir tantos párrafos como sea necesario. El diseño es completamente responsivo y se adapta a cualquier tamaño de pantalla.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- NOTA DE ACESSIBILIDADE -->
+    <div class="a11y-note" role="note">
+      <strong>Acessibilidade:</strong> Este conteúdo está disponível em áudio e em três idiomas. Se precisar de apoio adicional, procure um mediador da exposição.
+    </div>
+
+  </main>
+
+  <footer>
+    <p><strong>Nome da Exposição</strong> · Fundação Roberto Marinho</p>
+    <p style="margin-top:4px">© 2025 — Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    // Troca de abas
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('aria-controls');
+
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById(target).classList.add('active');
+      });
+
+      // Navegação por teclado entre abas
+      btn.addEventListener('keydown', e => {
+        const btnsArr = [...tabBtns];
+        const idx = btnsArr.indexOf(btn);
+        if (e.key === 'ArrowRight') {
+          btnsArr[(idx + 1) % btnsArr.length].focus();
+        } else if (e.key === 'ArrowLeft') {
+          btnsArr[(idx - 1 + btnsArr.length) % btnsArr.length].focus();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
