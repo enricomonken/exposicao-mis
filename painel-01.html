@@ -45,24 +45,30 @@
     .audio-header { background: #111; color: white; padding: 10px 20px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
     .audio-body { padding: 14px 20px 18px; }
     .yt-wrapper { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; }
-    .yt-wrapper iframe { width: 100%; height: 200px; border: none; display: block; }
-    /* Cobre o topo: título e perfil do YouTube */
+    /* Iframe maior que o container — esconde as bordas com overflow:hidden */
+    .yt-wrapper iframe {
+      width: calc(100% + 4px);
+      height: 260px;
+      border: none;
+      display: block;
+      margin: -50px -2px -50px -2px;
+    }
+    /* Moldura preta em cima — cobre topo (título, perfil) */
     .yt-wrapper::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 42px;
+      height: 52px;
       background: #000;
       z-index: 10;
       pointer-events: none;
     }
-    /* Cobre canto inferior direito: logo YouTube */
+    /* Moldura preta em baixo — cobre barra inferior (logo, barra de progresso) */
     .yt-wrapper::after {
       content: '';
       position: absolute;
-      bottom: 0; right: 0;
-      width: 100px;
-      height: 36px;
+      bottom: 0; left: 0; right: 0;
+      height: 52px;
       background: #000;
       z-index: 10;
       pointer-events: none;
@@ -78,6 +84,14 @@
     .a11y-note { background: #FFF5F5; border-left: 3px solid var(--red); padding: 12px 16px; font-size: 13px; color: #880000; line-height: 1.5; margin-bottom: 20px; }
 
     footer { text-align: center; padding: 24px 16px 0; font-size: 11px; color: #AAAAAA; }
+    /* Sombra interna cobre laterais esquerda e direita */
+    .yt-sides {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: inset 60px 0 0 #000, inset -60px 0 0 #000;
+    }
     :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   </style>
 </head>
@@ -107,7 +121,7 @@
     <div class="audio-section">
       <div class="audio-header"><span>🔊</span> Ouça este painel</div>
       <div class="audio-body">
-        <div class="yt-wrapper">
+        <div class="yt-wrapper"><div class="yt-sides"></div>
           <iframe src="https://www.youtube.com/embed/YA116Gtz0jM?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&fs=0&disablekb=1"
             title="Áudio Painel 01 PT"
             allow="autoplay; encrypted-media"></iframe>
@@ -130,7 +144,7 @@
     <div class="audio-section">
       <div class="audio-header"><span>🔊</span> Listen to this panel</div>
       <div class="audio-body">
-        <div class="yt-wrapper">
+        <div class="yt-wrapper"><div class="yt-sides"></div>
           <iframe src="https://www.youtube.com/embed/T3tjEMl3PLY?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&fs=0&disablekb=1"
             title="Audio Panel 01 EN"
             allow="autoplay; encrypted-media"></iframe>
@@ -153,7 +167,7 @@
     <div class="audio-section">
       <div class="audio-header"><span>🔊</span> Escuche este panel</div>
       <div class="audio-body">
-        <div class="yt-wrapper">
+        <div class="yt-wrapper"><div class="yt-sides"></div>
           <iframe src="https://www.youtube.com/embed/X4mNRRdTHEI?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&fs=0&disablekb=1"
             title="Audio Panel 01 ES"
             allow="autoplay; encrypted-media"></iframe>
