@@ -139,6 +139,46 @@
       font-size: 11px; color: #AAAAAA; letter-spacing: 1px;
     }
     footer img { height: 28px; opacity: 0.4; margin-bottom: 8px; filter: invert(0); display: block; margin: 0 auto 8px; }
+
+    .panel-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-left: 3px solid #CC0000;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .panel-card-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px 12px;
+    }
+    .panel-langs {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px 16px;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      background: #F7F5F2;
+      border: 1px solid #E0DDD8;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #111111;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .lang-btn:hover {
+      background: #CC0000;
+      border-color: #CC0000;
+      color: white;
+    }
     :focus-visible { outline: 2px solid #CC0000; outline-offset: 2px; }
 
     .intro-card {
@@ -205,30 +245,52 @@
 
     <p class="section-label">Painéis da exposição</p>
     <nav class="panel-list" aria-label="Lista de painéis">
-      <a class="panel-link" href="painel-01.html">
-        <span class="panel-num">01</span>
-        <div class="panel-info">
-          <strong>Título do Painel 01</strong>
-          <span>Subtítulo ou tema do painel</span>
+
+      <div class="panel-card">
+        <div class="panel-card-top">
+          <span class="panel-num">01</span>
+          <div class="panel-info">
+            <strong>As Primeiras Escolas</strong>
+            <span>Origens da educação pública no Brasil</span>
+          </div>
         </div>
-        <span class="panel-arrow" aria-hidden="true">›</span>
-      </a>
-      <a class="panel-link" href="painel-02.html">
-        <span class="panel-num">02</span>
-        <div class="panel-info">
-          <strong>Título do Painel 02</strong>
-          <span>Subtítulo ou tema do painel</span>
+        <div class="panel-langs">
+          <a href="painel-01.html#pt" class="lang-btn" aria-label="Painel 01 em Português">🇧🇷 Português</a>
+          <a href="painel-01.html#en" class="lang-btn" aria-label="Painel 01 em Inglês">🇺🇸 English</a>
+          <a href="painel-01.html#es" class="lang-btn" aria-label="Painel 01 em Espanhol">🇪🇸 Español</a>
         </div>
-        <span class="panel-arrow" aria-hidden="true">›</span>
-      </a>
-      <a class="panel-link" href="painel-03.html">
-        <span class="panel-num">03</span>
-        <div class="panel-info">
-          <strong>Título do Painel 03</strong>
-          <span>Subtítulo ou tema do painel</span>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-card-top">
+          <span class="panel-num">02</span>
+          <div class="panel-info">
+            <strong>Título do Painel 02</strong>
+            <span>Subtítulo ou tema do painel</span>
+          </div>
         </div>
-        <span class="panel-arrow" aria-hidden="true">›</span>
-      </a>
+        <div class="panel-langs">
+          <a href="painel-02.html#pt" class="lang-btn" aria-label="Painel 02 em Português">🇧🇷 Português</a>
+          <a href="painel-02.html#en" class="lang-btn" aria-label="Painel 02 em Inglês">🇺🇸 English</a>
+          <a href="painel-02.html#es" class="lang-btn" aria-label="Painel 02 em Espanhol">🇪🇸 Español</a>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-card-top">
+          <span class="panel-num">03</span>
+          <div class="panel-info">
+            <strong>Título do Painel 03</strong>
+            <span>Subtítulo ou tema do painel</span>
+          </div>
+        </div>
+        <div class="panel-langs">
+          <a href="painel-03.html#pt" class="lang-btn" aria-label="Painel 03 em Português">🇧🇷 Português</a>
+          <a href="painel-03.html#en" class="lang-btn" aria-label="Painel 03 em Inglês">🇺🇸 English</a>
+          <a href="painel-03.html#es" class="lang-btn" aria-label="Painel 03 em Espanhol">🇪🇸 Español</a>
+        </div>
+      </div>
+
     </nav>
 
     <div class="a11y-note" role="note" style="margin-bottom:20px">
