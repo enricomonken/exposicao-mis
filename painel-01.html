@@ -44,8 +44,29 @@
     .audio-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; overflow: hidden; border-top: 3px solid var(--red); }
     .audio-header { background: #111; color: white; padding: 10px 20px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
     .audio-body { padding: 14px 20px 18px; }
-    .yt-wrapper { border-radius: var(--radius); overflow: hidden; background: #000; }
+    .yt-wrapper { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; }
     .yt-wrapper iframe { width: 100%; height: 200px; border: none; display: block; }
+    /* Cobre o topo: título e perfil do YouTube */
+    .yt-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 42px;
+      background: #000;
+      z-index: 10;
+      pointer-events: none;
+    }
+    /* Cobre canto inferior direito: logo YouTube */
+    .yt-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 100px;
+      height: 36px;
+      background: #000;
+      z-index: 10;
+      pointer-events: none;
+    }
 
     /* Texto */
     .text-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 22px 26px; margin-bottom: 16px; }
