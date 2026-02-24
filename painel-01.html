@@ -252,18 +252,31 @@
   <script>
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
+
+    function activateTab(lang) {
+      tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      tabContents.forEach(c => c.classList.remove('active'));
+      const btn = document.getElementById('btn-' + lang);
+      const content = document.getElementById('tab-' + lang);
+      if (btn) { btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
+      if (content) content.classList.add('active');
+    }
+
+    // Abre na aba correta conforme o hash da URL (#pt, #en, #es)
+    const hash = window.location.hash.replace('#','');
+    if (['pt','en','es'].includes(hash)) {
+      activateTab(hash);
+    }
+
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const target = btn.getAttribute('aria-controls');
-        tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-        tabContents.forEach(c => c.classList.remove('active'));
-        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-        document.getElementById(target).classList.add('active');
+        const lang = btn.getAttribute('aria-controls').replace('tab-','');
+        activateTab(lang);
       });
       btn.addEventListener('keydown', e => {
         const arr = [...tabBtns]; const idx = arr.indexOf(btn);
         if (e.key==='ArrowRight') arr[(idx+1)%arr.length].focus();
-        if (e.key==='ArrowLeft') arr[(idx-1+arr.length)%arr.length].focus();
+        if (e.key==='ArrowLeft')  arr[(idx-1+arr.length)%arr.length].focus();
       });
     });
   </script>
