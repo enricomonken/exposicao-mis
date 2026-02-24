@@ -179,6 +179,42 @@
       border-color: #CC0000;
       color: white;
     }
+
+    .lang-switcher {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .lang-switch-btn {
+      flex: 1;
+      padding: 10px;
+      background: #F7F5F2;
+      border: 1px solid #E0DDD8;
+      border-radius: 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111111;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .lang-switch-btn.active {
+      background: #CC0000;
+      border-color: #CC0000;
+      color: white;
+    }
+    .panel-link {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border-left: 3px solid #CC0000;
+    }
+    .panel-link:hover { transform: translateX(3px); box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .panel-arrow { font-size: 22px; color: #CCCCCC; }
     :focus-visible { outline: 2px solid #CC0000; outline-offset: 2px; }
 
     .intro-card {
@@ -261,35 +297,6 @@
         </div>
       </div>
 
-      <div class="panel-card">
-        <div class="panel-card-top">
-          <span class="panel-num">02</span>
-          <div class="panel-info">
-            <strong>Título do Painel 02</strong>
-            <span>Subtítulo ou tema do painel</span>
-          </div>
-        </div>
-        <div class="panel-langs">
-          <a href="painel-02.html?lang=pt" class="lang-btn" aria-label="Português">🇧🇷 PT</a>
-          <a href="painel-02.html?lang=en" class="lang-btn" aria-label="English">🇺🇸 EN</a>
-          <a href="painel-02.html?lang=es" class="lang-btn" aria-label="Español">🇪🇸 ES</a>
-        </div>
-      </div>
-
-      <div class="panel-card">
-        <div class="panel-card-top">
-          <span class="panel-num">03</span>
-          <div class="panel-info">
-            <strong>Título do Painel 03</strong>
-            <span>Subtítulo ou tema do painel</span>
-          </div>
-        </div>
-        <div class="panel-langs">
-          <a href="painel-03.html?lang=pt" class="lang-btn" aria-label="Português">🇧🇷 PT</a>
-          <a href="painel-03.html?lang=en" class="lang-btn" aria-label="English">🇺🇸 EN</a>
-          <a href="painel-03.html?lang=es" class="lang-btn" aria-label="Español">🇪🇸 ES</a>
-        </div>
-      </div>
 
     </nav>
 
@@ -303,5 +310,22 @@
     <p>Museu da Imagem e do Som · Fundação Roberto Marinho</p>
     <p style="margin-top:4px">© 2025 — Todos os direitos reservados</p>
   </footer>
+  <script>
+    function setLang(lang) {
+      // Hide all blocks
+      document.querySelectorAll('.lang-block').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.lang-switch-btn').forEach(b => b.classList.remove('active'));
+      // Show selected
+      document.getElementById('block-' + lang).style.display = 'block';
+      // Activate button
+      const btns = document.querySelectorAll('.lang-switch-btn');
+      const map = {pt:0, en:1, es:2};
+      btns[map[lang]].classList.add('active');
+    }
+    // Read ?lang= param on load
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang');
+    if (lang && ['pt','en','es'].includes(lang)) setLang(lang);
+  </script>
 </body>
 </html>
