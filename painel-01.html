@@ -262,16 +262,17 @@
       if (content) content.classList.add('active');
     }
 
-    // Abre na aba correta conforme o hash da URL (#pt, #en, #es)
-    const hash = window.location.hash.replace('#','');
-    if (['pt','en','es'].includes(hash)) {
-      activateTab(hash);
+    // Lê o parâmetro ?lang= da URL e abre a aba correta
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang');
+    if (lang && ['pt','en','es'].includes(lang)) {
+      activateTab(lang);
     }
 
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('aria-controls').replace('tab-','');
-        activateTab(lang);
+        const l = btn.getAttribute('aria-controls').replace('tab-','');
+        activateTab(l);
       });
       btn.addEventListener('keydown', e => {
         const arr = [...tabBtns]; const idx = arr.indexOf(btn);
