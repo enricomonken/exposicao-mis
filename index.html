@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exposição Temporária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F5F0E8;
+      --surface: #FFFFFF;
+      --text: #1A1208;
+      --text-muted: #6B5E4A;
+      --accent: #B5432A;
+      --accent-light: #F2E0DB;
+      --border: #D9CFC0;
+      --radius: 4px;
+      --shadow: 0 2px 16px rgba(26,18,8,0.10);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    header {
+      background: var(--text);
+      color: #F5F0E8;
+      padding: 36px 24px 28px;
+    }
+    .expo-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 7vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #F5F0E8;
+    }
+    header p.subtitle {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #B0A090;
+      font-weight: 300;
+    }
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 16px 0;
+    }
+    .intro-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 22px 28px;
+      margin-bottom: 24px;
+    }
+    .intro-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .intro-card p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #3A2E1E;
+    }
+    .intro-card p + p { margin-top: 12px; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .panel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .panel-link {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border-left: 4px solid var(--accent);
+    }
+    .panel-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26,18,8,0.14);
+    }
+    .panel-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 44px;
+      line-height: 1;
+    }
+    .panel-info { flex: 1; }
+    .panel-info strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .panel-info span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .panel-arrow {
+      font-size: 20px;
+      color: var(--border);
+    }
+    .a11y-note {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 12px 16px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #6B2A1A;
+      line-height: 1.5;
+    }
+    .a11y-note strong { font-weight: 600; }
+    footer {
+      text-align: center;
+      padding: 32px 16px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    footer strong { color: var(--text); font-weight: 600; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="expo-label">Exposição Temporária · Fundação Roberto Marinho</p>
+    <h1>Nome da Exposição</h1>
+    <p class="subtitle">Texto de apoio à visita — áudio e múltiplos idiomas</p>
+  </header>
+
+  <main>
+    <div class="intro-card">
+      <h2>Bem-vindo à exposição</h2>
+      <p>
+        Substitua este texto pela apresentação da exposição. Conte ao visitante o tema central, o contexto histórico ou o convite à experiência — de forma breve e acolhedora.
+      </p>
+      <p>
+        Para acessar o conteúdo de cada painel — incluindo áudio em português e texto em inglês e espanhol — escaneie o QR Code fixado ao lado de cada painel ou navegue pelos links abaixo.
+      </p>
+    </div>
+
+    <p class="section-label">Painéis da exposição</p>
+    <nav class="panel-list" aria-label="Lista de painéis">
+      <a class="panel-link" href="painel-01.html">
+        <span class="panel-num">01</span>
+        <div class="panel-info">
+          <strong>Título do Painel 01</strong>
+          <span>Subtítulo ou tema do painel</span>
+        </div>
+        <span class="panel-arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="panel-link" href="painel-02.html">
+        <span class="panel-num">02</span>
+        <div class="panel-info">
+          <strong>Título do Painel 02</strong>
+          <span>Subtítulo ou tema do painel</span>
+        </div>
+        <span class="panel-arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="panel-link" href="painel-03.html">
+        <span class="panel-num">03</span>
+        <div class="panel-info">
+          <strong>Título do Painel 03</strong>
+          <span>Subtítulo ou tema do painel</span>
+        </div>
+        <span class="panel-arrow" aria-hidden="true">›</span>
+      </a>
+    </nav>
+
+    <div class="a11y-note" role="note">
+      <strong>Acessibilidade:</strong> Todos os painéis possuem áudio em português e texto em inglês e espanhol. Se precisar de apoio, procure um mediador da exposição.
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Nome da Exposição</strong> · Fundação Roberto Marinho</p>
+    <p style="margin-top:4px">© 2025 — Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>

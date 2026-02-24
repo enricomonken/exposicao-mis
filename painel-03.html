@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel 03 — Exposição Temporária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F5F0E8; --surface: #FFFFFF; --text: #1A1208;
+      --text-muted: #6B5E4A; --accent: #B5432A; --accent-light: #F2E0DB;
+      --border: #D9CFC0; --radius: 4px; --shadow: 0 2px 16px rgba(26,18,8,0.10);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; font-weight: 300; min-height: 100vh; padding-bottom: 60px; }
+    header { background: var(--text); color: #F5F0E8; padding: 28px 24px 22px; }
+    .expo-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+    header h1 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 6vw, 34px); font-weight: 700; line-height: 1.2; color: #F5F0E8; }
+    .panel-number { display: inline-block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8C7B67; margin-top: 10px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 13px; color: #8C7B67; text-decoration: none; }
+    .back-link:hover { color: #F5F0E8; }
+    main { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    .audio-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin: 24px 0 20px; overflow: hidden; }
+    .audio-header { background: var(--accent); color: white; padding: 12px 20px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+    .audio-body { padding: 16px 20px 20px; }
+    .audio-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+    .yt-wrapper { position: relative; border-radius: var(--radius); overflow: hidden; background: #000; }
+    .yt-wrapper iframe { width: 100%; height: 80px; border: none; display: block; }
+    .lang-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+    .tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .tab-btn { flex: 1; padding: 14px 8px; background: none; border: none; cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+    .tab-content { display: none; padding: 24px 22px 28px; animation: fadeIn 0.25s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .lang-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .panel-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+    .panel-text { font-size: 16px; line-height: 1.75; color: #3A2E1E; }
+    .panel-text p + p { margin-top: 14px; }
+    .a11y-note { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin-top: 20px; font-size: 13px; color: #6B2A1A; line-height: 1.5; }
+    .nav-paineis { display: flex; gap: 10px; margin-top: 20px; }
+    .nav-btn { flex: 1; padding: 14px; text-align: center; text-decoration: none; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: 1px; text-transform: uppercase; transition: background 0.15s; }
+    .nav-btn:hover { background: var(--accent-light); }
+    .nav-btn.next { background: var(--accent); color: white; }
+    .nav-btn.next:hover { background: #9E3822; }
+    footer { text-align: center; padding: 32px 16px 0; font-size: 12px; color: var(--text-muted); }
+    footer strong { color: var(--text); font-weight: 600; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="expo-label">Exposição Temporária · Fundação Roberto Marinho</p>
+    <h1>Nome da Exposição</h1>
+    <span class="panel-number">Painel 03 de 03</span><br/>
+    <a class="back-link" href="index.html">← Voltar à página inicial</a>
+  </header>
+
+  <main>
+    <section class="audio-section" aria-label="Áudio do painel">
+      <div class="audio-header">
+        <span aria-hidden="true">🔊</span> Ouça este painel
+      </div>
+      <div class="audio-body">
+        <p class="audio-desc">Pressione play para ouvir o texto em português.</p>
+        <!--
+          INSTRUÇÃO: Substitua ID_DO_VIDEO pelo ID do YouTube.
+          Ex: se a URL for youtube.com/watch?v=abc123, use abc123
+        -->
+        <div class="yt-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/ID_DO_VIDEO?rel=0&modestbranding=1"
+            title="Áudio do Painel 03"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="lang-section" aria-label="Texto do painel">
+      <div class="tabs" role="tablist" aria-label="Selecione o idioma">
+        <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-pt" id="btn-pt">🇧🇷 PT</button>
+        <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-en" id="btn-en">🇺🇸 EN</button>
+        <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-es" id="btn-es">🇪🇸 ES</button>
+      </div>
+      <div class="tab-content active" id="tab-pt" role="tabpanel" aria-labelledby="btn-pt">
+        <p class="lang-label">Português</p>
+        <h2 class="panel-title">Título do Painel 03</h2>
+        <div class="panel-text">
+          <p>Insira aqui o texto do painel 03 em português. Mantenha parágrafos curtos para facilitar a leitura no celular.</p>
+          <p>Segundo parágrafo do texto em português.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-en" role="tabpanel" aria-labelledby="btn-en">
+        <p class="lang-label">English</p>
+        <h2 class="panel-title">Panel 03 Title</h2>
+        <div class="panel-text">
+          <p>Insert the English text for panel 03 here. Keep paragraphs short for easier reading on mobile.</p>
+          <p>Second paragraph in English.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-es" role="tabpanel" aria-labelledby="btn-es">
+        <p class="lang-label">Español</p>
+        <h2 class="panel-title">Título del Panel 03</h2>
+        <div class="panel-text">
+          <p>Inserte aquí el texto del panel 03 en español. Mantenga párrafos cortos para facilitar la lectura en móvil.</p>
+          <p>Segundo párrafo en español.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="a11y-note" role="note">
+      <strong>Acessibilidade:</strong> Conteúdo disponível em áudio e em três idiomas. Procure um mediador se precisar de apoio.
+    </div>
+
+    <nav class="nav-paineis" aria-label="Navegação entre painéis">
+      <a class="nav-btn" href="painel-02.html">← Painel 02</a>
+      <a class="nav-btn next" href="index.html">⌂ Início</a>
+    </nav>
+  </main>
+
+  <footer>
+    <p><strong>Nome da Exposição</strong> · Fundação Roberto Marinho</p>
+    <p style="margin-top:4px">© 2025 — Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('aria-controls');
+        tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        tabContents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        document.getElementById(target).classList.add('active');
+      });
+      btn.addEventListener('keydown', e => {
+        const arr = [...tabBtns]; const idx = arr.indexOf(btn);
+        if (e.key==='ArrowRight') arr[(idx+1)%arr.length].focus();
+        if (e.key==='ArrowLeft')  arr[(idx-1+arr.length)%arr.length].focus();
+      });
+    });
+  </script>
+</body>
+</html>
